@@ -1,0 +1,467 @@
+JS - interações
+
+
+window.alert('Minha mensagem');
+ 	"pop up". aparece antes de carregar o html. botao de ok
+
+window.confirm('Está gostando de JS?')
+	"pop up". tem botao de confirmar/cancelar
+
+window.prompt('Qual seu nome?');
+	"pop up". Espaço para escrever
+
+
+--------------comentários JS
+// uma linha
+/* */ mais de uma linha
+
+--------------comentários HTML
+<!-- Isso é um comentário -->
+
+--------------comentários CSS
+/* Isso é um comentário */
+
+--------------variáveis
+var
+let
+
+---- string
+" "
+` ` crase
+' ' apóstrofo/aspas simples
+
+--- identificadores
+podem começar com:
+letra
+$
+_
+
+
+---------------------------- node js
+> var nome = 'Paula'
+
+ctrl l limpa a tela do terminal
+
+variaveis minúsculas e maiúsculas diferem
+
+------------------type of
+number - reais/inteiros
+   infinity
+   NaN
+string - cadeias de caracteres  " " ` ` ' '
+boolean - true false
+null
+undefined
+object - [] {}
+  array
+function - function() function{} function[]
+
+> typeof undefined
+'undefined'
+
+> typeof NaN
+'number'
+
+> typeof Infinity
+'number'
+
+> typeof 6
+'number'
+
+> typeof "6"
+'string'
+
+> typeof null
+'object'
+
+> typeof {}
+'object'
+
+> typeof function(){}
+'function'
+
+> typeof undefined
+'undefined'
+
+
+-------------------------------
+CONCATENAR
+	+
+	('É um grande prazer em te conhecer, ' + nome)
+
+
+// number + number para adição
+// string + string para concatenação
+
+var n1 = window.prompt('Digite um número: '); // string
+
+------------STRING-NUMERO
+
+para fazer a soma, é preciso converter os tipos das variáveis
+	Number.parseInt(n) // inteiro
+	Number.parseFloat(n) // real
+	Number(n) // ele se vira
+
+-------------NÚMERO-STRING
+
+String(n)
+n.toString()
+
+----FORMATANDO STRINGS
+var s = 'JavaScript"
+
+'Eu estou aprendendo s' // não faz interpolação
+'Eu estou aprendendo ' + s // usa concatenação
+`Eu estou aprendendo ${s}` // CRASE. usa template string (placeholder)
+`O aluno ${nome} com ${idade} anos tirou a nota ${nota}`
+
+-------OUTRAS
+var s = 'JavaScript"
+
+s.length // quantos caracteres a string tem
+s.toUpperCase() // tudo para 'MAIÚSCULAS'
+s.toLowerCase() // tudo para 'minúsculas'
+
+--FORMATAÇÃO DE 10.5 PARA 10.50
+
+n.toFixed(2)
+
+--TROCAR PONTO POR VIRGULA
+n.toFixed(2).replace('.', ',')
+
+--BOTAR FORMATAÇÃO DE DINHEIRO
+n.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+
+
+---------OPERADORES------------------
+
+--aritméticos
++
+-
+*
+/
+% resto da divisão
+** potência
+
+	precedência
+		()
+		**
+		* / %
+		+ -
+
+--atribuição
+	n = n+1
+	n += 1
+	n++
+	++n
+	n--
+	--n
+
+--relacionais
+	>
+	<
+	>=
+	<=
+	==
+	!=
+
+	IDENTIDADE
+
+	== para valor
+	=== para se são idênticos (tipo e valor)
+	!= diferente valor
+	!== diferente valor e tipo
+
+		5 == '5' 
+		true
+			pois tem mesmo valor, apesar do tipo ser diferente.
+
+		5 === '5'
+		false
+			pois não mede só o valor, mas o tipo também
+
+
+--lógicos
+	!  negação
+	&& conjunção
+	|| disjunção (ou)
+
+PRECEDÊNCIA
+() ** /
+> < >=
+!
+&&
+||
+
+--ternário
+
+? :
+teste lógico - situação verdadeira - situação falsa
+
+média >= 7.0 ? "Aprovado" : "Reprovado"
+
+> var idade = 19
+> var r = idade >= 18 ? 'MAIOR' : 'MENOR'
+
+
+
+
+-----------------------DOM
+document object model
+
+ÁRVORE DOM
+		  window
+	location document history
+		 html
+	      head   body
+	meta title   h1 p p div
+			 strong
+
+acessar através de elementos
+
+----SELECIONANDO
+
+--por marca
+	getElementsByTagName()
+	var p1 = window.document.getElementsByTagName('p')[0];
+	window.document.write('Está escrito assim: ' + p1.innerText)
+	p1.style.color = "blue"
+
+	var corpo = window.document.body;
+	corpo.style.background = "black"
+
+--por ID
+	getElementById()
+
+--por nome
+	getElementsByName()
+
+--por classe
+	getElementsbyClassName()
+
+--por seletor
+	querySelector('div.msg')
+	
+	var d = window.document.querySelector('div.msg')
+
+	classe é .
+	id é #
+
+
+
+----------------------FUNÇÕES
+bloco de código quando ocorre um evento
+mouseenter
+mousemove
+mousedown
+mouseup
+click
+mouseout
+
+function acao (parametro) {
+
+}
+
+
+CHAMAR FUNÇOES
+	NO HTML
+	<div id="area" onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()">
+        Interaja...
+	
+	NO JS
+	var a = window.document.getElementById('area')
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', entrar)
+        a.addEventListener('mouseout', sair)
+        
+--------------CONDIÇÕES---------
+
+if (condição) {
+
+} else {
+
+}
+
+var data = new Date()
+var agora = data.getHours()
+if (agora < 5) {
+    console.log('Madrugada')
+} else if (agora < 12) {
+    console.log ('Bom dia')
+} else if (agora < 18) {
+    console.log ('Boa tarde')
+} else {
+    console.log('Boa noite')
+}
+
+
+--CONDIÇÃO MÚLTIPLA
+
+switch (expressão) {
+	case valor 1:
+		break
+	case valor 2:
+		break
+	case valor 3:
+		break
+	default:
+{
+
+break pra quebrar e aí pula o bloco do switch
+
+
+var agora = new Date()
+var diaSem = agora.getDay()
+/*
+ 0 = domingo
+ 1 = segunda
+ 2 = terça
+ 3 = quarta
+ 4 - quinta
+ 5 = sexta
+ 6 = sabado
+ */
+
+ //console.log(diaSem)
+
+ switch(diaSem) {
+   case 0:
+      console.log('Domingo')
+      break
+   case 1:
+      console.log('Segunda')
+      break
+   case 2:
+      console.log('Terça')
+      break
+   case 3:
+      console.log('Quarta')
+      break
+   case 4:
+      console.log('Quinta')
+      break
+   case 5:
+      console.log('Sexta')
+      break
+   case 6:
+      console.log('Sábado')
+      break
+   default:
+      console.log('[ERRO] Dia inválido')
+ }
+
+
+-----------REPETIÇÃO------------
+
+DO
+coloca a lógica primeiro com o do
+
+do {
+console.log(`Passo ${c}`)
+    c++
+} while (c <= 6)
+
+
+--------------------
+
+WHILE
+
+while (c <= 6) {
+console.log(`Passo ${c}`)
+    c++
+}
+
+
+-------------------
+FOR
+
+for (inicio; teste; incr) {
+
+}
+
+for (var c=1; c<=10; c++) {
+
+}
+
+--------ARRAY-------------------
+
+índice começa do zero
+
+--add n° num indíce específico:
+num[3] = 6
+
+--add no último do vetor:
+num.push(7)
+
+--tamanho do vetor
+num.length
+
+--coloca em ordem crescente
+num.sort()
+
+--busca valor dentro de um índice
+let pos = num.indexOf(8)
+	está no i = 3
+	se ele não achar, ele bota i = = -1.
+---------------------------------
+
+let valores = [0, 1, 7, 2, 9]
+
+for(let pos=0; pos < valores.length; pos++) {
+    console.log(`A posição ${pos} tem o valor ${valores[pos]}`)
+}
+
+-------------------------usando conjuntos
+
+só dá para valores já estabelecidos no vetor
+for (let pos in valores) {
+    console.log(`${valores[pos]}`)
+}
+
+para cada posição em valores
+
+
+-------------FUNÇÕES-----------------
+
+chamada, parâmetro, retorno e ação
+
+ações executadas a partir de CHAMADAS qnd ocorre um EVENTO
+pode receber PARÂMETROS e retornar um RESULTADO
+
+function parimpar(n) {
+    if (n%2 == 0) {
+      return 'Par!'
+    } else {
+      return 'Ímpar'
+    }
+}
+
+let res = parimpar(4)
+console.log(res)
+
+------------
+parâmetro que evita erros como NaN
+function soma(n1=0, n2=0) 
+
+
+
+
+
+
+
+
+
+
+
+================================
+proximo
+
+functions
+objetos
+	tipo um array que pode colocar nome. nao depende do índice
+	let= {nome:'José', sexo:'M', peso:85.4, engordar(p){}} 
+modularização
+regEx
+JSON
+AJAX
+NodeJS
